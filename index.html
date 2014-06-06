@@ -35,6 +35,7 @@
 			}
 		</style>
 				
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 		
 		<script>
@@ -55,6 +56,7 @@
 			mocktailApp.controller('SlotsCtrl', function ($scope) {
 				var available_options = [
 					{
+						'id': 1,
 						'name': 'Coca Cola',
 						'flavor': '',
 						'img_url': 'assets/images/cocacola.jpg',
@@ -64,6 +66,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 2,
 						'name': 'Dr. Pepper',
 						'flavor': '',
 						'img_url': 'assets/images/drpepper.jpg',
@@ -73,6 +76,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 3,
 						'name': 'Fresca',
 						'flavor': 'Citrus',
 						'img_url': 'assets/images/fresca_citrus.jpg',
@@ -82,6 +86,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 4,
 						'name': 'Fusion',
 						'flavor': 'Lemon Lime',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -91,6 +96,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 5,
 						'name': 'Fusion',
 						'flavor': 'Pomegranate',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -100,6 +106,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 6,
 						'name': 'Fuze',
 						'flavor': 'Lemon Iced Tea',
 						'img_url': 'assets/images/fuze_lemon.jpg',
@@ -109,6 +116,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 7,
 						'name': 'Minute Maid',
 						'flavor': 'Lemonade',
 						'img_url': 'assets/images/minutemaid_lemonade.jpg',
@@ -118,6 +126,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 8,
 						'name': 'Mountain Dew',
 						'flavor': '',
 						'img_url': 'assets/images/mountaindew.jpg',
@@ -127,6 +136,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 9,
 						'name': 'Mug',
 						'flavor': 'Root Beer',
 						'img_url': 'assets/images/mug.jpg',
@@ -136,6 +146,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 10,
 						'name': 'Ocean Spray',
 						'flavor': 'Grapefruit',
 						'img_url': 'assets/images/oceanspray_grapefruit.jpg',
@@ -145,6 +156,7 @@
 						'sweetness': 3
 					},										
 					{
+						'id': 11,
 						'name': 'Orange Crush',
 						'flavor': '',
 						'img_url': 'assets/images/orangecrush.jpg',
@@ -154,6 +166,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 12,
 						'name': 'Pepsi',
 						'flavor': '',
 						'img_url': 'assets/images/pepsi.jpg',
@@ -163,6 +176,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 13,
 						'name': 'Seagram\'s Ginger Ale',
 						'flavor': 'Ginger Ale',
 						'img_url': 'assets/images/seagrams_gingerale.jpg',
@@ -172,6 +186,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 14,
 						'name': 'Sprite',
 						'flavor': '',
 						'img_url': 'assets/images/sprite.jpg',
@@ -181,6 +196,7 @@
 						'sweetness': 2
 					},
 					{
+						'id': 15,
 						'name': 'Talking Rain',
 						'flavor': 'Black Raspberry',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -190,6 +206,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 16,
 						'name': 'Talking Rain',
 						'flavor': 'Lemon Lime',
 						'img_url': 'assets/images/talkingrain_lemonlime.jpg',
@@ -199,6 +216,7 @@
 						'sweetness': 1,
 					},
 					{
+						'id': 17,
 						'name': 'Talking Rain',
 						'flavor': 'Natural',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -208,6 +226,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 18,
 						'name': 'Talking Rain',
 						'flavor': 'Peach Nectarine',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -217,6 +236,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 19,
 						'name': 'Talking Rain',
 						'flavor': 'Mango Peach',
 						'img_url': 'assets/images/talkingrain_natural.jpg',
@@ -226,6 +246,7 @@
 						'sweetness': 1
 					},
 					{
+						'id': 20,
 						'name': 'Welch\'s',
 						'flavor': 'Apple Juice',
 						'img_url': 'assets/images/welch_apple.jpg',
@@ -235,6 +256,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 21,
 						'name': 'Welch\'s',
 						'flavor': 'Cranberry Juice',
 						'img_url': 'assets/images/welch_cranberry.jpg',
@@ -244,6 +266,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 22,
 						'name': 'Welch\'s',
 						'flavor': 'Grape Juice',
 						'img_url': 'assets/images/welch_grape.jpg',
@@ -253,6 +276,7 @@
 						'sweetness': 3
 					},
 					{
+						'id': 23,
 						'name': 'Welch\'s',
 						'flavor': 'Orange Juice',
 						'img_url': 'assets/images/welch_orange.jpg',
@@ -378,6 +402,8 @@
 				$scope.addSlot();
 			});
 		</script>
+		
+		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js"></script>
 	</head>
 	<body ng-controller="SlotsCtrl">
 		<div>
@@ -403,7 +429,7 @@
 				<table class="table">
 					<tr ng-repeat="slot in slots">
 						<td align="center">
-							<img src="{{slot.img_url}}" alt="{{slot.name}}" class="img-slot">
+							<img ng-src="{{slot.img_url}}" alt="{{slot.name}}" class="img-slot">
 						</td>
 						<td>
 							<h3><b>{{slot.name}}</b> {{slot.flavor}}</h3>
@@ -419,9 +445,7 @@
 				<img src="assets/images/qr.png" alt="QR code" width="300">
 			</center>
 		</div>
-		
-		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js"></script>
-		
+				
 		<footer style="width: 100%;">
 			<div class="pull-left" style="background-color: #FFFFFF">
 				&copy; 2014 <a href="http://joshjcarrier.com">Josh Carrier</a>. Fork on <a href="https://github.com/joshjcarrier/mocktail">GitHub</a>.
