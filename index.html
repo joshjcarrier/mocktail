@@ -292,6 +292,7 @@
 				$scope.name = "";
 				$scope.sweetness = 0;
 				$scope.slots = [];
+				$scope.share = "";
 			  
 				function generateName() {
 					var slotCount = $scope.slots.length;
@@ -301,6 +302,7 @@
 						name += available_name_prefixes[Math.floor((Math.random() * available_name_prefixes.length))] + " ";
 					}
 					
+					var shareBody = "";
 					var totalSweetness = 0;
 					for (var i = 0; i < slotCount; i++) {
 						if (i == 0) {
@@ -314,6 +316,7 @@
 						}
 						
 						totalSweetness += $scope.slots[i].sweetness;
+						shareBody += $scope.slots[i].name + " " + $scope.slots[i].flavor + ", %0D";
 					}
 					
 					if (Math.random() < 0.2) {
@@ -322,6 +325,7 @@
 					
 					$scope.name = name;
 					$scope.sweetness = totalSweetness / $scope.slots.length;
+					$scope.share = "mailto:?subject=Mocktail " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + document.URL;
 				}
 			  
 				function addSlot() {
@@ -409,7 +413,9 @@
 				</table>
 			</div>
 			
-			<center>	
+			<center>			
+				<a ng-href="{{share}}" class="btn btn-default btn-lg">&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;</a>
+				<br />
 				<img src="assets/images/qr.png" alt="QR code" width="300">
 			</center>
 		</div>
