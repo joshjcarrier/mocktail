@@ -323,6 +323,13 @@
 
 				$scope.slots = [];
 
+				function getParameterByName(name) {
+				    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+				    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+				}
+
+				$scope.kioskmode = getParameterByName("kiosk") == 'true';
+
 				function generateName() {
 					var slotCount = $scope.slots.length;
 					var name = "";
@@ -421,15 +428,18 @@
 			<center>
 				<img src="assets/images/crunk_berry.jpg" height="220">
 				<h1>MOCKTAIL {{slots.length}}000</h1>
-				<br />
 
-				<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px">SLOTS SLOTS SLOTS EVERYBODY &uarr;</button>
-				<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px">TURN DOWN FOR WHAT &darr;</button>
-				<br />
-				<br />
-				<button type="button" class="btn btn-default btn-primary btn-lg" ng-click="resetSlots()">&diams;&diams;&diams; YEAH! WHAT? OKAY &diams;&diams;&diams;</button>
-				<br />
-				<br />
+				<div ng-hide="{{kioskmode}}">
+					<br />
+					<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px">SLOTS SLOTS SLOTS EVERYBODY &uarr;</button>
+					<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px">TURN DOWN FOR WHAT &darr;</button>
+					<br />
+					<br />
+					<button type="button" class="btn btn-default btn-primary btn-lg" ng-click="resetSlots()">&diams;&diams;&diams; YEAH! WHAT? OKAY &diams;&diams;&diams;</button>
+					<br />
+					<br />
+				</div>
+
 				<h2 style="text-transform:uppercase;word-wrap:break-word;">&quot;{{mocktail.name}}&quot;</h2>
 				<i>{{formatSweetness(mocktail.sweetness)}}</i>
 				<br />
@@ -455,10 +465,15 @@
 			</div>
 
 			<center>
-				<br />
-				<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg">&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;</a>
+				<div ng-hide="{{kioskmode}}">
+					<br />
+					<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg">&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;</a>
+				</div>
 				<br />
 				<img src="assets/images/qr.png" alt="QR code" width="300">
+				<div ng-show="{{kioskmode}}">
+					<small>KIOSK MODE <a href="?" target="_self">ENABLED</a></small>
+				</div>
 			</center>
 		</div>
 
