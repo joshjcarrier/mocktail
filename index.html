@@ -339,6 +339,7 @@
 					}
 
 					var shareBody = "";
+					var formula = "";
 					var totalSweetness = 0;
 					for (var i = 0; i < slotCount; i++) {
 						if (i == 0) {
@@ -353,6 +354,7 @@
 
 						totalSweetness += $scope.slots[i].sweetness;
 						shareBody += $scope.slots[i].name + " " + $scope.slots[i].flavor + ", %0D";
+						formula += $scope.slots[i].id + ",";
 					}
 
 					if (Math.random() < 0.2) {
@@ -360,7 +362,8 @@
 					}
 
 					var sweetness = totalSweetness / $scope.slots.length;
-					var share = "mailto:?subject=Mocktail " + $scope.slots.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + document.URL;
+					var baseUrl = document.URL.split('?')[0];
+					var share = "mailto:?subject=Mocktail " + $scope.slots.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + baseUrl + "?f=" + formula;
 
 					$scope.mocktail =
 					{
@@ -415,9 +418,39 @@
 					generateName();
 				};
 
-				$scope.addSlot();
-				$scope.addSlot();
-				$scope.addSlot();
+				function restoreSlot(id) {
+					// TODO fix horribly inefficiency for large number of options
+					for (var i = 0; i < available_options.length; i++) {
+						if (available_options[i].id == id) {
+							$scope.slots.push(available_options[i]);
+							return true;
+						}
+					};
+
+					return false;
+				}
+
+				function tryRestoreSlots() {
+					var formula = getParameterByName("f");
+					if (!formula) { return false; }
+
+					var drinkIds = formula.split(',');
+					if (drinkIds.length == 0) { return false; }
+
+					for (var i = 0; i < drinkIds.length; i++) {
+						if (drinkIds[i] == '') { continue; }
+						restoreSlot(drinkIds[i]);
+					}
+
+					generateName();
+					return true;
+				}
+
+				if (!tryRestoreSlots()) {
+					$scope.addSlot();
+					$scope.addSlot();
+					$scope.addSlot();
+				}
 			});
 		</script>
 
