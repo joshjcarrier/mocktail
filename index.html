@@ -20,6 +20,10 @@
 				padding-right: 20px;
 			}
 
+			.img-slotstage {
+				width: 140px;
+			}
+
 			img.img-slot {
 				height: 100px;
 			}
@@ -27,6 +31,10 @@
 			@media (min-width: 768px) {
 				h1 {
 					font-size: 72px;
+				}
+
+				.img-slotstage {
+					width: 220px;
 				}
 
 				img.img-slot {
@@ -177,7 +185,7 @@
 					},
 					{
 						'id': 13,
-						'name': 'Seagram\'s Ginger Ale',
+						'name': 'Seagram\'s',
 						'flavor': 'Ginger Ale',
 						'img_url': 'assets/images/seagrams_gingerale.jpg',
 						'ngram_start': 'ginger ',
@@ -429,20 +437,25 @@
 			</center>
 
 			<div class="row">
-				<table class="table">
-					<tr ng-repeat="slot in slots">
-						<td align="center">
-							<img ng-src="{{slot.img_url}}" alt="{{slot.name}}" class="img-slot">
-						</td>
-						<td>
-							<h3><b>{{slot.name}}</b> {{slot.flavor}}</h3>
-							<i>{{formatSweetness(slot.sweetness)}}</i>
-						</td>
-					</tr>
-				</table>
+				<div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="slot in slots">
+					<div class="row" style="border-top: 1px solid #ddd">
+						<table>
+							<tr>
+								<td align="center" class="img-slotstage" style="padding: 10px">
+									<img ng-src="{{slot.img_url}}" alt="{{slot.name}}" class="img-slot">
+								</td>
+								<td valign="top">
+									<h3><b>{{slot.name}}</b> {{slot.flavor}}</h3>
+									<i>{{formatSweetness(slot.sweetness)}}</i>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 
 			<center>
+				<br />
 				<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg">&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;</a>
 				<br />
 				<img src="assets/images/qr.png" alt="QR code" width="300">
