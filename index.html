@@ -330,7 +330,7 @@
 
 				$scope.kioskmode = getParameterByName("kiosk") == 'true';
 
-				function generateName() {
+				function generate() {
 					var slotCount = $scope.slots.length;
 					var name = "";
 
@@ -393,14 +393,14 @@
 					if(available_options.length == 0) { return; }
 					addSlot();
 					$scope.resetSlots();
-					generateName();
+					generate();
 				};
 
 				$scope.removeSlot = function() {
 					if($scope.slots.length == 1) { return; }
 					removeSlot();
 					$scope.resetSlots();
-					generateName();
+					generate();
 				};
 
 				$scope.resetSlots = function() {
@@ -415,42 +415,46 @@
 						addSlot();
 					}
 
-					generateName();
+					generate();
 				};
 
-				function restoreSlot(id) {
-					// TODO fix horribly inefficiency for large number of options
-					for (var i = 0; i < available_options.length; i++) {
-						if (available_options[i].id == id) {
-							$scope.slots.push(available_options[i]);
-							return true;
+				function init() {
+					function tryRestoreSlots() {
+						function restoreSlot(id) {
+							// TODO fix horribly inefficiency for large number of options
+							for (var i = 0; i < available_options.length; i++) {
+								if (available_options[i].id == id) {
+									$scope.slots.push(available_options[i]);
+									return true;
+								}
+							};
+
+							return false;
 						}
-					};
 
-					return false;
-				}
+						var formula = getParameterByName("f");
+						if (!formula) { return false; }
 
-				function tryRestoreSlots() {
-					var formula = getParameterByName("f");
-					if (!formula) { return false; }
+						var drinkIds = formula.split(',');
+						if (drinkIds.length == 0) { return false; }
 
-					var drinkIds = formula.split(',');
-					if (drinkIds.length == 0) { return false; }
+						for (var i = 0; i < drinkIds.length; i++) {
+							if (drinkIds[i] == '') { continue; }
+							restoreSlot(drinkIds[i]);
+						}
 
-					for (var i = 0; i < drinkIds.length; i++) {
-						if (drinkIds[i] == '') { continue; }
-						restoreSlot(drinkIds[i]);
+						generate();
+						return true;
 					}
 
-					generateName();
-					return true;
-				}
+					if (!tryRestoreSlots()) {
+						$scope.addSlot();
+						$scope.addSlot();
+						$scope.addSlot();
+					}
+				};
 
-				if (!tryRestoreSlots()) {
-					$scope.addSlot();
-					$scope.addSlot();
-					$scope.addSlot();
-				}
+				init();
 			});
 		</script>
 
