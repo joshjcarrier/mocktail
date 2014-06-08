@@ -702,6 +702,11 @@
 						}
 					};					
 				};
+				
+				this.setThemeRandom = function() {
+					var randomIndex = Math.round(Math.random() * (this.themesList.length - 1));
+					this.active = this.themesList[randomIndex];
+				};
 			});
 
 			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', 'themesModel', function ($scope, drinksModel, mocktailModel, themesModel) {
@@ -772,6 +777,10 @@
 						}
 
 						return true;
+					}
+					
+					if (scope.kioskmode) {
+						themesModel.setThemeRandom();
 					}
 					
 					themesModel.setThemeByTinyName(scope.parameters.themeTinyName);
