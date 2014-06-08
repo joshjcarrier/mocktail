@@ -54,15 +54,10 @@
 			  return this.push.apply(this, rest);
 			};
 
-			function bogoSort()
-			{
-				return Math.floor(Math.random() * 0.5);
-			}
-
 			var mocktailApp = angular.module('mocktailApp', []);
 
-			mocktailApp.controller('SlotsCtrl', function ($scope) {
-				var available_options = [
+			mocktailApp.service('drinksModel', function() {
+				this.availableList = [
 					{
 						'id': 1,
 						'name': 'Coca Cola',
@@ -72,13 +67,13 @@
 						'ngram_mid': 'cacol',
 						'ngram_end': 'ola',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'caramelly',
-								'value': 2 
+								'value': 2
 							}
 						]
 					},
@@ -91,13 +86,13 @@
 						'ngram_mid': 'pepp',
 						'ngram_end': 'pepper',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'Dr. Peppery',
-								'value': 20 
+								'value': 20
 							}
 						]
 					},
@@ -110,13 +105,13 @@
 						'ngram_mid': 'fres',
 						'ngram_end': 'esca',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'lemony',
-								'value': 2 
+								'value': 2
 							}
 						]
 					},
@@ -129,13 +124,13 @@
 						'ngram_mid': 'lime',
 						'ngram_end': ' lime',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'lemony',
-								'value': 1 
+								'value': 1
 							}
 						]
 					},
@@ -148,13 +143,13 @@
 						'ngram_mid': 'megran',
 						'ngram_end': 'anate',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'pomegranatey',
-								'value': 1 
+								'value': 1
 							}
 						]
 					},
@@ -167,13 +162,13 @@
 						'ngram_mid': 'lemon',
 						'ngram_end': 'iced tea',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'lemony',
-								'value': 1 
+								'value': 1
 							}
 						]
 					},
@@ -186,11 +181,11 @@
 						'ngram_mid': 'lemon',
 						'ngram_end': 'ade',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'lemony',
 								'value': 3
 							}
@@ -205,7 +200,7 @@
 						'ngram_mid': 'mount',
 						'ngram_end': ' dew',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							}
@@ -220,13 +215,13 @@
 						'ngram_mid': 'root',
 						'ngram_end': ' beer',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'caramelly',
-								'value': 5 
+								'value': 5
 							}
 						]
 					},
@@ -239,13 +234,13 @@
 						'ngram_mid': 'apefruit',
 						'ngram_end': 'fruit',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'grapefruity',
-								'value': 3 
+								'value': 3
 							}
 						]
 					},
@@ -258,13 +253,13 @@
 						'ngram_mid': 'crush',
 						'ngram_end': 'crush',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'orangey',
-								'value': 20 
+								'value': 20
 							}
 						]
 					},
@@ -277,13 +272,13 @@
 						'ngram_mid': 'pep',
 						'ngram_end': 'epsi',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'caramelly',
-								'value': 3 
+								'value': 3
 							}
 						]
 					},
@@ -296,11 +291,11 @@
 						'ngram_mid': 'ginger',
 						'ngram_end': 'inger ale',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'gingery',
 								'value': 2
 							}
@@ -315,11 +310,11 @@
 						'ngram_mid': 'sprit',
 						'ngram_end': 'ite',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 2
 							},
-							{ 
+							{
 								'name': 'bubbly',
 								'value': 3
 							}
@@ -334,13 +329,13 @@
 						'ngram_mid': 'raspberr',
 						'ngram_end': 'aspberry',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'raspberry',
-								'value': 1 
+								'value': 1
 							}
 						]
 					},
@@ -353,13 +348,13 @@
 						'ngram_mid': 'lem',
 						'ngram_end': 'on lime',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'lemony',
-								'value': 1 
+								'value': 1
 							}
 						]
 					},
@@ -372,7 +367,7 @@
 						'ngram_mid': 'natural',
 						'ngram_end': 'ain natural',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							}
@@ -387,13 +382,13 @@
 						'ngram_mid': 'peach',
 						'ngram_end': 'each nectarine',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'peachy',
-								'value': 20 
+								'value': 20
 							}
 						]
 					},
@@ -406,13 +401,13 @@
 						'ngram_mid': 'mango',
 						'ngram_end': 'ango peach',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 1
 							},
-							{ 
+							{
 								'name': 'peachy',
-								'value': 20 
+								'value': 20
 							}
 						]
 					},
@@ -425,13 +420,13 @@
 						'ngram_mid': 'app',
 						'ngram_end': 'e juice',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'appley',
-								'value': 3 
+								'value': 3
 							}
 						]
 					},
@@ -444,13 +439,13 @@
 						'ngram_mid': 'cran',
 						'ngram_end': 'berry',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'cranberry',
-								'value': 3 
+								'value': 3
 							}
 						]
 					},
@@ -463,13 +458,13 @@
 						'ngram_mid': 'grape',
 						'ngram_end': 'ape juice',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'grapey',
-								'value': 3 
+								'value': 3
 							}
 						]
 					},
@@ -482,18 +477,54 @@
 						'ngram_mid': 'orange',
 						'ngram_end': 'ange juice',
 						'tastes' : [
-							{ 
+							{
 								'name': 'sweet',
 								'value': 3
 							},
-							{ 
+							{
 								'name': 'orangey',
 								'value': 3
 							}
 						]
 					}
 				];
-				
+
+				this.push = function(drink) {
+					if (drink == null) { return; }
+					this.availableList.push(drink);
+				};
+
+				this.popById = function(id) {
+					if (id == '') { return null; }
+
+					// TODO fix horribly inefficiency for large number of options
+					for (var i = 0; i < this.availableList.length; i++) {
+						if (this.availableList[i].id == id) {
+							return this.availableList[i];
+						}
+					};
+
+					return null;
+				};
+
+				this.popRandom = function() {
+					if(this.availableList.length == 0) { return null; }
+
+					this.availableList.reverse();
+					this.availableList.sort(function() {
+						return Math.floor(Math.random() * 0.5); // bogosort
+					});
+
+					var randomIndex = Math.floor(Math.random() * (this.availableList.length));
+					var randomOption = this.availableList[randomIndex];
+					this.availableList.remove(randomIndex);
+					return randomOption;
+				};
+			});
+
+			mocktailApp.service('mocktailModel', function() {
+				this.drinksList = [];
+
 				var available_name_prefixes = [
 					'diet',
 					' \'oh yeah!\'',
@@ -509,6 +540,79 @@
 					'zero'
 				];
 
+				this.update = function update() {
+					var slotCount = this.drinksList.length;
+					var name = "";
+
+					if (Math.random() < 0.08) {
+						name += available_name_prefixes[Math.floor((Math.random() * available_name_prefixes.length))] + " ";
+					}
+
+					var shareBody = "";
+					var formula = "";
+					var totalTastes = [];
+					for (var i = 0; i < slotCount; i++) {
+						if (i == 0) {
+							name += this.drinksList[i].ngram_start;
+						}
+						else if (i == slotCount-1) {
+							name += this.drinksList[i].ngram_end;
+						}
+						else {
+							name += this.drinksList[i].ngram_mid;
+						}
+
+						for (var j = 0; j < this.drinksList[i].tastes.length; j++) {
+							var taste = this.drinksList[i].tastes[j];
+
+							if (totalTastes[taste.name] == null) {
+								totalTastes[taste.name] = 0;
+							}
+
+							totalTastes[taste.name] += taste.value;
+						}
+
+						shareBody += this.drinksList[i].name + " " + this.drinksList[i].flavor + ", %0D";
+						formula += this.drinksList[i].id + ",";
+					}
+
+					if (Math.random() < 0.2) {
+						name += " " + available_name_postfixes[Math.floor((Math.random() * available_name_postfixes.length))];
+					}
+
+					var tastes = [];
+					var totalTasteKeys = Object.keys(totalTastes);
+					for (var i = 0; i < totalTasteKeys.length; i++) {
+						var tasteName = totalTasteKeys[i];
+						tastes.push({ 'name': tasteName, 'value': totalTastes[tasteName] / this.drinksList.length});
+					}
+
+					tastes.sort(function(a,b) { return a.value < b.value } );
+
+					var baseUrl = document.URL.split('?')[0];
+					var share = "mailto:?subject=Mocktail " + this.drinksList.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + baseUrl + "?f=" + formula;
+
+					this.name = name;
+					this.share = share;
+					this.tastes = tastes;
+				};
+
+				this.pushDrink = function(drink) {
+					if (drink == null) { return; }
+					this.drinksList.push(drink);
+					this.update();
+				};
+
+				this.popDrink = function() {
+					if(this.drinksList.length == 0) { return null; }
+					var drink = this.drinksList.pop();
+					this.update();
+					return drink;
+				};
+			});
+
+			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', function ($scope, drinksModel, mocktailModel) {
+
 				$scope.formatTaste = function(name, value) {
 					if (value <= 1.3) {
 						return "A little " + name;
@@ -523,107 +627,30 @@
 					return "Extremely " + name;
 				}
 
-				$scope.slots = [];
-
-				function getParameterByName(name) {
-				    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-				    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-				}
-
-				$scope.kioskmode = getParameterByName("kiosk") == 'true';
-
-				function generate() {
-					var slotCount = $scope.slots.length;
-					var name = "";
-
-					if (Math.random() < 0.08) {
-						name += available_name_prefixes[Math.floor((Math.random() * available_name_prefixes.length))] + " ";
-					}
-
-					var shareBody = "";
-					var formula = "";
-					var totalTastes = [];
-					for (var i = 0; i < slotCount; i++) {
-						if (i == 0) {
-							name += $scope.slots[i].ngram_start;
-						}
-						else if (i == slotCount-1) {
-							name += $scope.slots[i].ngram_end;
-						}
-						else {
-							name += $scope.slots[i].ngram_mid;
-						}
-						
-						for (var j = 0; j < $scope.slots[i].tastes.length; j++) {
-							var taste = $scope.slots[i].tastes[j];
-							
-							if (totalTastes[taste.name] == null) {
-								totalTastes[taste.name] = 0;
-							}
-							
-							totalTastes[taste.name] += taste.value;
-						}
-
-						shareBody += $scope.slots[i].name + " " + $scope.slots[i].flavor + ", %0D";
-						formula += $scope.slots[i].id + ",";
-					}
-
-					if (Math.random() < 0.2) {
-						name += " " + available_name_postfixes[Math.floor((Math.random() * available_name_postfixes.length))];
-					}
-
-					var tastes = [];
-					var totalTasteKeys = Object.keys(totalTastes);
-					for (var i = 0; i < totalTasteKeys.length; i++) {
-						var tasteName = totalTasteKeys[i];
-						tastes.push({ 'name': tasteName, 'value': totalTastes[tasteName] / $scope.slots.length});
-					}
-					
-					tastes.sort(function(a,b) { return a.value < b.value } );
-					
-					var baseUrl = document.URL.split('?')[0];
-					var share = "mailto:?subject=Mocktail " + $scope.slots.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + baseUrl + "?f=" + formula;
-
-					$scope.mocktail =
-					{
-						'name': name,
-						'share': share,
-						'tastes': tastes
-					};
-				}
-
 				function addSlot() {
-					if(available_options.length == 0) { return; }
-					available_options.reverse();
-					available_options.sort(bogoSort);
-					var randomIndex = Math.floor(Math.random() * (available_options.length));
-		 			var randomOption = available_options[randomIndex];
-					available_options.remove(randomIndex);
-					$scope.slots.push(randomOption);
+					var drink = drinksModel.popRandom();
+					mocktailModel.pushDrink(drink);
 				};
 
 				function removeSlot() {
-					if($scope.slots.length == 0) { return; }
-					var availableOption = $scope.slots.pop();
-					available_options.push(availableOption);
+					var drink = mocktailModel.popDrink();
+					drinksModel.push(drink);
 				};
 
 				$scope.addSlot = function() {
-					if(available_options.length == 0) { return; }
+					if(drinksModel.availableList.length == 0) { return; }
 					addSlot();
 					$scope.resetSlots();
-					generate();
 				};
 
 				$scope.removeSlot = function() {
-					if($scope.slots.length == 1) { return; }
+					if(mocktailModel.drinksList.length == 1) { return; }
 					removeSlot();
 					$scope.resetSlots();
-					generate();
 				};
 
 				$scope.resetSlots = function() {
-					var slotCount = $scope.slots.length;
+					var slotCount = mocktailModel.drinksList.length;
 					for (var i = 0; i < slotCount; i++)
 					{
 						removeSlot();
@@ -633,48 +660,50 @@
 					{
 						addSlot();
 					}
-
-					generate();
 				};
 
-				function init() {
+				function init(scope) {
+					function getParameterByName(name) {
+						var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+						return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+					}
+
+					var formulaCsv = getParameterByName("f");
+					var drinkIdList = [];
+					if (formulaCsv) { drinkIdList = formulaCsv.split(','); }
+
+					scope.parameters = {
+						'kiosk': getParameterByName("kiosk") == 'true',
+						'drinkIdList': drinkIdList
+					};
+					scope.mocktail = mocktailModel;
+					scope.kioskmode = $scope.parameters.kiosk;
+
 					function tryRestoreSlots() {
-						function restoreSlot(id) {
-							// TODO fix horribly inefficiency for large number of options
-							for (var i = 0; i < available_options.length; i++) {
-								if (available_options[i].id == id) {
-									$scope.slots.push(available_options[i]);
-									return true;
-								}
-							};
+						var drinkIdList = scope.parameters.drinkIdList;
+						if (drinkIdList.length == 0) { return false; }
 
-							return false;
+						for (var i = 0; i < drinkIdList.length; i++) {
+							if (drinkIdList[i] == '') { continue; }
+
+							var drink = drinksModel.popById(drinkIdList[i]);
+
+							if(drink == null) { return false; }
+							mocktailModel.pushDrink(drink);
 						}
 
-						var formula = getParameterByName("f");
-						if (!formula) { return false; }
-
-						var drinkIds = formula.split(',');
-						if (drinkIds.length == 0) { return false; }
-
-						for (var i = 0; i < drinkIds.length; i++) {
-							if (drinkIds[i] == '') { continue; }
-							restoreSlot(drinkIds[i]);
-						}
-
-						generate();
 						return true;
 					}
 
 					if (!tryRestoreSlots()) {
-						$scope.addSlot();
-						$scope.addSlot();
-						$scope.addSlot();
+						scope.addSlot();
+						scope.addSlot();
+						scope.addSlot();
 					}
 				};
 
-				init();
-			});
+				init($scope);
+			}]);
 		</script>
 
 		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js"></script>
@@ -683,7 +712,7 @@
 		<div>
 			<center>
 				<img src="assets/images/crunk_berry.jpg" height="220">
-				<h1>MOCKTAIL {{slots.length}}000</h1>
+				<h1>MOCKTAIL {{mocktail.drinksList.length}}000</h1>
 
 				<div ng-hide="{{kioskmode}}">
 					<br />
@@ -707,15 +736,15 @@
 			</center>
 
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="slot in slots">
+				<div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="drink in mocktail.drinksList">
 					<div class="row" style="border-top: 1px solid #ddd">
 						<table>
 							<tr>
 								<td align="center" class="img-slotstage" style="padding: 10px">
-									<img ng-src="{{slot.img_url}}" alt="{{slot.name}}" class="img-slot">
+									<img ng-src="{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
 								</td>
 								<td valign="top">
-									<h3><b>{{slot.name}}</b> {{slot.flavor}}</h3>
+									<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>
 								</td>
 							</tr>
 						</table>
