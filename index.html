@@ -688,6 +688,34 @@
 
 							return "so " + name + " wow";
 						}
+					},
+					{
+						"name": "Double Rainbow!!",
+						"tinyName": "DR",
+						"headerImgSrc": "doublerainbow.gif",
+						"addDrinkText": "Woooo!! Oh, wowww...",
+						"removeDrinkText": "*sob*",
+						"resetDrinkText": "... it's a double-complete rainbow...",
+						"shareDrinkText": "What does this mean?!?...",
+						"style": { 
+							'background-color': '#f1f1f1',
+							'background': 'linear-gradient(to left, rgba(255,0,0,0.1), rgba(255,165,0,0.1), rgba(255,255,0,0.1), rgba(0,255,0,0.1), rgba(0,0,255,0.1), rgba(238,130,238,0.1), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(255,0,0,0.1), rgba(255,165,0,0.1), rgba(255,255,0,0.1), rgba(0,255,0,0.1), rgba(0,0,255,0.1), rgba(238,130,238,0.1))',
+							'background-opacity': 0.1,
+							'font-family': 'arial, sans-serif'
+						},
+						"tasteFormat": function(name, value) {
+							if (value <= 1.3) {
+								return name + "... what does it mean?!";
+							}
+							else if (value <= 2.3) {
+								return name + "... it's so bright and vivid...";
+							}
+							else if (value <= 3.3) {
+								return "ohhhhh so " + name + "... *sob*";								
+							}
+
+							return "Oh my gawd " + name + "...";
+						}
 					}
 				];
 				
