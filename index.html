@@ -500,7 +500,9 @@
 					// TODO fix horribly inefficiency for large number of options
 					for (var i = 0; i < this.availableList.length; i++) {
 						if (this.availableList[i].id == id) {
-							return this.availableList[i];
+							var drink = this.availableList[i];
+							this.availableList.remove(i);
+							return drink;
 						}
 					};
 
@@ -580,6 +582,12 @@
 						name += " " + available_name_postfixes[Math.floor((Math.random() * available_name_postfixes.length))];
 					}
 
+					if (slotCount == 1) {
+						name = this.drinksList[0].name + " " + this.drinksList[0].flavor;
+					}
+
+					name = name.trim();
+
 					var tastes = [];
 					var totalTasteKeys = Object.keys(totalTastes);
 					for (var i = 0; i < totalTasteKeys.length; i++) {
@@ -640,13 +648,11 @@
 				$scope.addSlot = function() {
 					if(drinksModel.availableList.length == 0) { return; }
 					addSlot();
-					$scope.resetSlots();
 				};
 
 				$scope.removeSlot = function() {
 					if(mocktailModel.drinksList.length == 1) { return; }
 					removeSlot();
-					$scope.resetSlots();
 				};
 
 				$scope.resetSlots = function() {
