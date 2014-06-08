@@ -799,7 +799,7 @@
 		</header>
 		
 		<div style="padding-top:40px">
-			<center>
+			<center style="padding-left: 12px">
 				<img ng-src="assets/images/{{themes.active.headerImgSrc}}" height="220">
 				<h1>MOCKTAIL {{mocktail.drinksList.length}}000</h1>
 
@@ -832,7 +832,7 @@
 								<td align="center" class="img-slotstage" style="padding: 10px">
 									<img ng-src="assets/images/{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
 								</td>
-								<td valign="top">
+								<td valign="top" style="padding-right: 10px">
 									<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>
 								</td>
 							</tr>
@@ -841,7 +841,7 @@
 				</div>
 			</div>
 
-			<center>
+			<center style="padding-left: 12px">
 				<div ng-hide="{{kioskmode}}">
 					<br />
 					<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg"><span ng-bind-html="themes.active.shareDrinkText | unsafe"></span></a>
