@@ -14,12 +14,10 @@
 		<title>Mocktail Generator</title>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<style>
-			body {
-				padding-left: 20px;
-				padding-top: 20px;
-				padding-right: 20px;
+			body {				
+				padding-right: 15px;
 			}
-
+			
 			.img-slotstage {
 				width: 140px;
 			}
@@ -41,6 +39,12 @@
 					height: 200px;
 				}
 			}
+			
+			[ng-click],
+			[data-ng-click],
+			[x-ng-click] {
+				cursor: pointer;
+			}
 		</style>
 
 		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
@@ -55,6 +59,12 @@
 			};
 
 			var mocktailApp = angular.module('mocktailApp', []);
+			
+			mocktailApp.filter('unsafe', function($sce) {
+				return function(val) {
+					return $sce.trustAsHtml(val);
+				};
+			});
 
 			mocktailApp.service('drinksModel', function() {
 				this.availableList = [
@@ -62,7 +72,7 @@
 						'id': 1,
 						'name': 'Coca Cola',
 						'flavor': '',
-						'img_url': 'assets/images/cocacola.jpg',
+						'img_url': 'cocacola.jpg',
 						'ngram_start': 'coca',
 						'ngram_mid': 'cacol',
 						'ngram_end': 'ola',
@@ -81,7 +91,7 @@
 						'id': 2,
 						'name': 'Dr. Pepper',
 						'flavor': '',
-						'img_url': 'assets/images/drpepper.jpg',
+						'img_url': 'drpepper.jpg',
 						'ngram_start': 'dr. ',
 						'ngram_mid': 'pepp',
 						'ngram_end': 'pepper',
@@ -100,7 +110,7 @@
 						'id': 3,
 						'name': 'Fresca',
 						'flavor': 'Citrus',
-						'img_url': 'assets/images/fresca_citrus.jpg',
+						'img_url': 'fresca_citrus.jpg',
 						'ngram_start': 'fres',
 						'ngram_mid': 'fres',
 						'ngram_end': 'esca',
@@ -119,7 +129,7 @@
 						'id': 4,
 						'name': 'Fusion',
 						'flavor': 'Lemon Lime',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'lemon',
 						'ngram_mid': 'lime',
 						'ngram_end': ' lime',
@@ -138,7 +148,7 @@
 						'id': 5,
 						'name': 'Fusion',
 						'flavor': 'Pomegranate',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'pom',
 						'ngram_mid': 'megran',
 						'ngram_end': 'anate',
@@ -157,7 +167,7 @@
 						'id': 6,
 						'name': 'Fuze',
 						'flavor': 'Lemon Iced Tea',
-						'img_url': 'assets/images/fuze_lemon.jpg',
+						'img_url': 'fuze_lemon.jpg',
 						'ngram_start': 'iced ',
 						'ngram_mid': 'lemon',
 						'ngram_end': 'iced tea',
@@ -176,7 +186,7 @@
 						'id': 7,
 						'name': 'Minute Maid',
 						'flavor': 'Lemonade',
-						'img_url': 'assets/images/minutemaid_lemonade.jpg',
+						'img_url': 'minutemaid_lemonade.jpg',
 						'ngram_start': 'lemo',
 						'ngram_mid': 'lemon',
 						'ngram_end': 'ade',
@@ -195,7 +205,7 @@
 						'id': 8,
 						'name': 'Mountain Dew',
 						'flavor': '',
-						'img_url': 'assets/images/mountaindew.jpg',
+						'img_url': 'mountaindew.jpg',
 						'ngram_start': 'mountain ',
 						'ngram_mid': 'mount',
 						'ngram_end': ' dew',
@@ -210,7 +220,7 @@
 						'id': 9,
 						'name': 'Mug',
 						'flavor': 'Root Beer',
-						'img_url': 'assets/images/mug.jpg',
+						'img_url': 'mug.jpg',
 						'ngram_start': 'root ',
 						'ngram_mid': 'root',
 						'ngram_end': ' beer',
@@ -229,7 +239,7 @@
 						'id': 10,
 						'name': 'Ocean Spray',
 						'flavor': 'Grapefruit',
-						'img_url': 'assets/images/oceanspray_grapefruit.jpg',
+						'img_url': 'oceanspray_grapefruit.jpg',
 						'ngram_start': 'grape',
 						'ngram_mid': 'apefruit',
 						'ngram_end': 'fruit',
@@ -248,7 +258,7 @@
 						'id': 11,
 						'name': 'Orange Crush',
 						'flavor': '',
-						'img_url': 'assets/images/orangecrush.jpg',
+						'img_url': 'orangecrush.jpg',
 						'ngram_start': 'orange ',
 						'ngram_mid': 'crush',
 						'ngram_end': 'crush',
@@ -267,7 +277,7 @@
 						'id': 12,
 						'name': 'Pepsi',
 						'flavor': '',
-						'img_url': 'assets/images/pepsi.jpg',
+						'img_url': 'pepsi.jpg',
 						'ngram_start': 'pep',
 						'ngram_mid': 'pep',
 						'ngram_end': 'epsi',
@@ -286,7 +296,7 @@
 						'id': 13,
 						'name': 'Seagram\'s',
 						'flavor': 'Ginger Ale',
-						'img_url': 'assets/images/seagrams_gingerale.jpg',
+						'img_url': 'seagrams_gingerale.jpg',
 						'ngram_start': 'ginger ',
 						'ngram_mid': 'ginger',
 						'ngram_end': 'inger ale',
@@ -305,7 +315,7 @@
 						'id': 14,
 						'name': 'Sprite',
 						'flavor': '',
-						'img_url': 'assets/images/sprite.jpg',
+						'img_url': 'sprite.jpg',
 						'ngram_start': 'sprite',
 						'ngram_mid': 'sprit',
 						'ngram_end': 'ite',
@@ -324,7 +334,7 @@
 						'id': 15,
 						'name': 'Talking Rain',
 						'flavor': 'Black Raspberry',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'rasp',
 						'ngram_mid': 'raspberr',
 						'ngram_end': 'aspberry',
@@ -343,7 +353,7 @@
 						'id': 16,
 						'name': 'Talking Rain',
 						'flavor': 'Lemon Lime',
-						'img_url': 'assets/images/talkingrain_lemonlime.jpg',
+						'img_url': 'talkingrain_lemonlime.jpg',
 						'ngram_start': 'lemon ',
 						'ngram_mid': 'lem',
 						'ngram_end': 'on lime',
@@ -362,7 +372,7 @@
 						'id': 17,
 						'name': 'Talking Rain',
 						'flavor': 'Natural',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'natural ',
 						'ngram_mid': 'natural',
 						'ngram_end': 'ain natural',
@@ -377,7 +387,7 @@
 						'id': 18,
 						'name': 'Talking Rain',
 						'flavor': 'Peach Nectarine',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'peach ',
 						'ngram_mid': 'peach',
 						'ngram_end': 'each nectarine',
@@ -396,7 +406,7 @@
 						'id': 19,
 						'name': 'Talking Rain',
 						'flavor': 'Mango Peach',
-						'img_url': 'assets/images/talkingrain_natural.jpg',
+						'img_url': 'talkingrain_natural.jpg',
 						'ngram_start': 'mango ',
 						'ngram_mid': 'mango',
 						'ngram_end': 'ango peach',
@@ -415,7 +425,7 @@
 						'id': 20,
 						'name': 'Welch\'s',
 						'flavor': 'Apple Juice',
-						'img_url': 'assets/images/welch_apple.jpg',
+						'img_url': 'welch_apple.jpg',
 						'ngram_start': 'apple',
 						'ngram_mid': 'app',
 						'ngram_end': 'e juice',
@@ -434,7 +444,7 @@
 						'id': 21,
 						'name': 'Welch\'s',
 						'flavor': 'Cranberry Juice',
-						'img_url': 'assets/images/welch_cranberry.jpg',
+						'img_url': 'welch_cranberry.jpg',
 						'ngram_start': 'cran',
 						'ngram_mid': 'cran',
 						'ngram_end': 'berry',
@@ -453,7 +463,7 @@
 						'id': 22,
 						'name': 'Welch\'s',
 						'flavor': 'Grape Juice',
-						'img_url': 'assets/images/welch_grape.jpg',
+						'img_url': 'welch_grape.jpg',
 						'ngram_start': 'grape',
 						'ngram_mid': 'grape',
 						'ngram_end': 'ape juice',
@@ -472,7 +482,7 @@
 						'id': 23,
 						'name': 'Welch\'s',
 						'flavor': 'Orange Juice',
-						'img_url': 'assets/images/welch_orange.jpg',
+						'img_url': 'welch_orange.jpg',
 						'ngram_start': 'orange',
 						'ngram_mid': 'orange',
 						'ngram_end': 'ange juice',
@@ -618,22 +628,75 @@
 					return drink;
 				};
 			});
+						
+			mocktailApp.service('themesModel', function() {
+				this.themesList = [
+					{
+						"name": "Lil Jon",
+						"tinyName": "LJ",
+						"headerImgSrc": "crunk_berry.jpg",
+						"addDrinkText": "SLOTS SLOTS SLOTS EVERYBODY &uarr;",
+						"removeDrinkText": "TURN DOWN FOR WHAT &darr;",
+						"resetDrinkText": "&diams;&diams;&diams; YEAH! WHAT? OKAY &diams;&diams;&diams;",
+						"shareDrinkText": "&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;",
+						"style": { 
+						},
+						"tasteFormat": function(name, value) {
+							if (value <= 1.3) {
+								return name + " got low";
+							}
+							else if (value <= 2.3) {
+								return "Lil " + name;
+							}
+							else if (value <= 3.3) {
+								return "All that " + name;
+							}
 
-			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', function ($scope, drinksModel, mocktailModel) {
+							return "Crazy " + name;
+						}
+					},
+					{
+						"name": "Doge",
+						"tinyName": "D",
+						"headerImgSrc": "doge.jpg",
+						"addDrinkText": "so many, much respect",
+						"removeDrinkText": "what r you doing",
+						"resetDrinkText": "moar excite",
+						"shareDrinkText": "friend. amaze",
+						"style": { 
+							'background-color': '#fcf1ac',
+							'font-family': 'Comic Sans, Comic Sans MS, cursive'
+						},
+						"tasteFormat": function(name, value) {
+							if (value <= 1.3) {
+								return "such few " + name;
+							}
+							else if (value <= 2.3) {
+								return "much " + name;
+							}
+							else if (value <= 3.3) {
+								return "very " + name;
+							}
 
-				$scope.formatTaste = function(name, value) {
-					if (value <= 1.3) {
-						return "A little " + name;
+							return "so " + name + " wow";
+						}
 					}
-					else if (value <= 2.3) {
-						return "Quite " + name;
-					}
-					else if (value <= 3.3) {
-						return "Very " + name;
-					}
+				];
+				
+				this.active = this.themesList[0];
+				
+				this.setThemeByTinyName = function(tinyName) {
+					if (tinyName == '') { return; }
+					for(var i=0; i < this.themesList.length; i++) {
+						if (this.themesList[i].tinyName.toLowerCase() == tinyName.toLowerCase()) {
+							this.active = this.themesList[i];
+							return;
+						}
+					};					
+				};
+			});
 
-					return "Extremely " + name;
-				}
+			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', 'themesModel', function ($scope, drinksModel, mocktailModel, themesModel) {
 
 				function addSlot() {
 					var drink = drinksModel.popRandom();
@@ -680,9 +743,11 @@
 
 					scope.parameters = {
 						'kiosk': getParameterByName("kiosk") == 'true',
+						'themeTinyName': getParameterByName("t"),
 						'drinkIdList': drinkIdList
 					};
 					scope.mocktail = mocktailModel;
+					scope.themes = themesModel;
 					scope.kioskmode = $scope.parameters.kiosk;
 
 					function tryRestoreSlots() {
@@ -700,6 +765,8 @@
 
 						return true;
 					}
+					
+					themesModel.setThemeByTinyName(scope.parameters.themeTinyName);
 
 					if (!tryRestoreSlots()) {
 						scope.addSlot();
@@ -714,19 +781,27 @@
 
 		<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.1.1/bootstrap.min.js"></script>
 	</head>
-	<body ng-controller="SlotsCtrl">
-		<div>
+	<body ng-controller="SlotsCtrl" ng-style="themes.active.style">
+		<header ng-hide="{{kioskmode}}">		
+			<div class="pull-right" style="padding-top:10px; padding-right:20px">
+				<span ng-repeat="theme in themes.themesList">
+				<a ng-click="themes.setThemeByTinyName(theme.tinyName)" title="{{theme.name}} theme" ng-style="{'font-weight': themes.active == theme ? 'bold' : ''}">{{theme.tinyName}}</a><span ng-show="!$last">&nbsp;|&nbsp;</span>
+				</span>
+			</div>
+		</header>
+		
+		<div style="padding-top:40px">
 			<center>
-				<img src="assets/images/crunk_berry.jpg" height="220">
+				<img ng-src="assets/images/{{themes.active.headerImgSrc}}" height="220">
 				<h1>MOCKTAIL {{mocktail.drinksList.length}}000</h1>
 
 				<div ng-hide="{{kioskmode}}">
 					<br />
-					<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px">SLOTS SLOTS SLOTS EVERYBODY &uarr;</button>
-					<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px">TURN DOWN FOR WHAT &darr;</button>
+					<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px"><span ng-bind-html="themes.active.addDrinkText | unsafe"></span></button>
+					<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px"><span ng-bind-html="themes.active.removeDrinkText | unsafe"></span></button>
 					<br />
 					<br />
-					<button type="button" class="btn btn-default btn-primary btn-lg" ng-click="resetSlots()">&diams;&diams;&diams; YEAH! WHAT? OKAY &diams;&diams;&diams;</button>
+					<button type="button" class="btn btn-default btn-primary btn-lg" ng-click="resetSlots()"><span ng-bind-html="themes.active.resetDrinkText | unsafe"></span></button>
 					<br />
 					<br />
 				</div>
@@ -734,20 +809,20 @@
 				<h2 style="text-transform:uppercase;word-wrap:break-word;">&quot;{{mocktail.name}}&quot;</h2>
 				<i>
 					<span ng-repeat="taste in mocktail.tastes | limitTo: 3">
-						{{formatTaste(taste.name, taste.value)}}<span ng-hide="$last">, </span>
+						{{themes.active.tasteFormat(taste.name, taste.value)}}<span ng-hide="$last">, </span>
 					</span>
-				</i>
+				</i>				
 				<br />
 				<br />
 			</center>
 
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="drink in mocktail.drinksList">
-					<div class="row" style="border-top: 1px solid #ddd">
+					<div class="row" style="border-top: 1px solid #ddd; background: #ffffff">
 						<table>
 							<tr>
 								<td align="center" class="img-slotstage" style="padding: 10px">
-									<img ng-src="{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
+									<img ng-src="assets/images/{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
 								</td>
 								<td valign="top">
 									<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>
@@ -761,18 +836,19 @@
 			<center>
 				<div ng-hide="{{kioskmode}}">
 					<br />
-					<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg">&hearts;&hearts;&hearts; COME GET SOME &hearts;&hearts;&hearts;</a>
+					<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg"><span ng-bind-html="themes.active.shareDrinkText | unsafe"></span></a>
 				</div>
 				<br />
 				<img src="assets/images/qr.png" alt="QR code" width="300">
+				<br/><br/>
 				<div ng-show="{{kioskmode}}">
 					<small>KIOSK MODE <a href="?" target="_self">ENABLED</a></small>
 				</div>
 			</center>
 		</div>
 
-		<footer style="width: 100%;">
-			<div class="pull-left" style="background-color: #FFFFFF">
+		<footer style="width:100%;">
+			<div class="pull-left" style="width: 100%; padding-left: 10px">
 				&copy; 2014 <a href="http://joshjcarrier.com">Josh Carrier</a>. Fork on <a href="https://github.com/joshjcarrier/mocktail">GitHub</a>.
 				<small>Lil Jon and product images copyright their respective owners. Made possible with <a href="http://angularjs.org/">AngularJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a> &middot; <a href="license-ext.txt">Open source licenses</a>.</small>
 			</div>
