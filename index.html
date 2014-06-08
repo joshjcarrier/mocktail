@@ -30,6 +30,14 @@
 				h1 {
 					font-size: 72px;
 				}
+				
+				h2 {
+					font-size: 48px;
+				}
+				
+				h3 {
+					font-size: 36px;
+				}
 
 				.img-slotstage {
 					width: 220px;
@@ -686,7 +694,7 @@
 				this.active = this.themesList[0];
 				
 				this.setThemeByTinyName = function(tinyName) {
-					if (tinyName == '') { return; }
+					if (tinyName == null || tinyName == '') { return; }
 					for(var i=0; i < this.themesList.length; i++) {
 						if (this.themesList[i].tinyName.toLowerCase() == tinyName.toLowerCase()) {
 							this.active = this.themesList[i];
@@ -848,7 +856,7 @@
 		</div>
 
 		<footer style="width:100%;">
-			<div class="pull-left" style="width: 100%; padding-left: 10px">
+			<div class="pull-left" style="width: 100%; padding-left: 10px; color: #999999">
 				&copy; 2014 <a href="http://joshjcarrier.com">Josh Carrier</a>. Fork on <a href="https://github.com/joshjcarrier/mocktail">GitHub</a>.
 				<small>Lil Jon and product images copyright their respective owners. Made possible with <a href="http://angularjs.org/">AngularJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a> &middot; <a href="license-ext.txt">Open source licenses</a>.</small>
 			</div>
