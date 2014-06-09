@@ -509,6 +509,7 @@
 
 				this.push = function(drink) {
 					if (drink == null) { return; }
+					drink.pinned = false;
 					this.availableList.push(drink);
 				};
 
@@ -630,10 +631,30 @@
 				};
 
 				this.popDrink = function() {
-					if(this.drinksList.length == 0) { return null; }
-					var drink = this.drinksList.pop();
+					if (this.drinksList.length == 0) { return null; }
+					
+					var drink;
+					var drinkIndex;
+					for (var i=this.drinksList.length-1; i >=0; i--) {
+						if (this.drinksList[i].pinned == true) { continue; }
+						drink = this.drinksList[i];
+						drinkIndex = i;
+						break;
+					}
+					
+					if (drink == null) { 
+						return null; 
+					}
+					
+					this.drinksList.splice(drinkIndex, 1); 
+					
 					this.update();
 					return drink;
+				};
+				
+				this.togglePin = function(drink) {
+					if (drink == null) { return; }
+					drink.pinned = !drink.pinned;
 				};
 			});
 						
@@ -766,7 +787,7 @@
 						removeSlot();
 					}
 
-					for (var i = 0; i < slotCount; i++)
+					for (var i = mocktailModel.drinksList.length; i < slotCount; i++)
 					{
 						addSlot();
 					}
@@ -864,15 +885,26 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="drink in mocktail.drinksList">
 					<div class="row" style="border-top: 1px solid #ddd; background: #ffffff">
-						<table>
+						<table style="width: 100%">
 							<tr>
 								<td align="center" class="img-slotstage" style="padding: 10px">
 									<img ng-src="assets/images/{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
 								</td>
-								<td valign="top" style="padding-right: 10px">
-									<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>
+								<td valign="top">
+									<table style="width: 100%">
+										<tr>
+											<td>
+												<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>									
+											</td>
+											<td align="right" valign="top" style="padding-left:10px; padding-top:10px; padding-right:20px" ng-hide="{{kioskmode}}">
+												<button type="button" class="btn btn-sm btn-default" ng-click="mocktail.togglePin(drink)" ng-class="drink.pinned ? 'btn-primary':''" title="Prevent removal by randomization">
+												  <span class="glyphicon glyphicon-pushpin"></span>
+												</button>
+											</td>
+										</tr>
+									</table>
 								</td>
-							</tr>
+							</tr>							
 						</table>
 					</div>
 				</div>
