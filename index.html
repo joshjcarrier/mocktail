@@ -787,6 +787,11 @@
 					for(var i=0; i < this.themesList.length; i++) {
 						if (this.themesList[i].tinyName.toLowerCase() == tinyName.toLowerCase()) {
 							this.active = this.themesList[i];
+
+							var d = new Date();
+						    d.setTime(d.getTime() + (365*24*60*60*1000));
+						    var expires = "expires="+d.toGMTString();
+							document.cookie = this.active.tinyName + ";" + expires;
 							return;
 						}
 					};
@@ -796,6 +801,13 @@
 					var randomIndex = Math.round(Math.random() * (this.themesList.length - 1));
 					this.active = this.themesList[randomIndex];
 				};
+
+
+				this.restoreThemeByCookie = function() {
+					this.setThemeByTinyName(document.cookie.split(';')[0]);
+				};
+
+				this.restoreThemeByCookie();
 			});
 
 			mocktailApp.controller('SlotsCtrl', ['$scope', '$timeout', 'drinksModel', 'mocktailModel', 'themesModel', 'parametersModel', function ($scope, $timeout, drinksModel, mocktailModel, themesModel, parametersModel) {
