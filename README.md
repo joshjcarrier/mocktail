@@ -2,7 +2,8 @@ Mocktail Generator
 ========
 A drink mix chooser supporting over 8.3+ million combinations of concotions to try.
 
-Features include:
+Features
+--------
 * Easily add, remove, and shuffle drink selections from 1 to 23+ combination slots
 * Pin ingredients down to save them from the randomizer
 * Approximate flavors described before you mix
@@ -17,14 +18,13 @@ Kiosk mode
 --------
 Kiosk mode hides the interactive UI, making the page useful in a read-only, auto-refreshed environment. 
 A theme will also be randomly selected on load. To enable this behavior, add
-> #kiosk=true
-to the URL.
+`#kiosk=true` to the URL.
 
 
-Extensible contribution
+Adding content
 --------
-Themes - look for 'themesModel'.'themesList'.
-Drinks - look for 'drinksModel'.'availableList'.
+* Themes - look for 'themesModel'.'themesList'.
+* Drinks - look for 'drinksModel'.'availableList'.
 
 
 License
