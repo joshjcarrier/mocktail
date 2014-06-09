@@ -542,8 +542,25 @@
 					return randomOption;
 				};
 			});
+			
+			mocktailApp.service('parametersModel', function() {
+				function getParameterByName(name) {
+					var match = RegExp('[#?&]' + name + '=([^&]*)').exec(window.location.hash);
+					return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+				}
 
-			mocktailApp.service('mocktailModel', function() {
+				var formulaCsv = getParameterByName("f");
+				var drinkIdList = [];
+				if (formulaCsv) { drinkIdList = formulaCsv.split(','); }
+
+				this.parameters = {
+					'kiosk': getParameterByName("kiosk") == 'true',
+					'themeTinyName': getParameterByName("t"),
+					'drinkIdList': drinkIdList
+				};
+			});
+
+			mocktailApp.service('mocktailModel', ['parametersModel', function(parametersModel) {
 				this.drinksList = [];
 
 				var available_name_prefixes = [
@@ -614,14 +631,19 @@
 						tastes.push({ 'name': tasteName, 'value': totalTastes[tasteName] / this.drinksList.length});
 					}
 
-					tastes.sort(function(a,b) { return a.value < b.value } );
-
-					var baseUrl = document.URL.split('?')[0];
-					var share = "mailto:?subject=Mocktail " + this.drinksList.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + baseUrl + "?f=" + formula;
+					tastes.sort(function(a,b) { return a.value < b.value } );			
+																				
+					window.location.hash = "f=" + formula;
+					
+					var share = "mailto:?subject=Mocktail " + this.drinksList.length + "000: " + name + "&body=" + name + ".%0D%0D" + shareBody + "%0D%0D" + document.URL;
 
 					this.name = name;
 					this.share = share;
 					this.tastes = tastes;
+					
+					if (parametersModel.parameters.kiosk) {
+						window.location.hash = "kiosk=true";
+					} 
 				};
 
 				this.pushDrink = function(drink) {
@@ -656,7 +678,7 @@
 					if (drink == null) { return; }
 					drink.pinned = !drink.pinned;
 				};
-			});
+			}]);
 						
 			mocktailApp.service('themesModel', function() {
 				this.themesList = [
@@ -758,7 +780,7 @@
 				};
 			});
 
-			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', 'themesModel', function ($scope, drinksModel, mocktailModel, themesModel) {
+			mocktailApp.controller('SlotsCtrl', ['$scope', 'drinksModel', 'mocktailModel', 'themesModel', 'parametersModel', function ($scope, drinksModel, mocktailModel, themesModel, parametersModel) {
 
 				function addSlot() {
 					var drink = drinksModel.popRandom();
@@ -793,27 +815,13 @@
 					}
 				};
 
-				function init(scope) {
-					function getParameterByName(name) {
-						var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-						return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-					}
-
-					var formulaCsv = getParameterByName("f");
-					var drinkIdList = [];
-					if (formulaCsv) { drinkIdList = formulaCsv.split(','); }
-
-					scope.parameters = {
-						'kiosk': getParameterByName("kiosk") == 'true',
-						'themeTinyName': getParameterByName("t"),
-						'drinkIdList': drinkIdList
-					};
+				function init(scope) {					
 					scope.mocktail = mocktailModel;
 					scope.themes = themesModel;
-					scope.kioskmode = $scope.parameters.kiosk;
+					scope.kioskmode = parametersModel.parameters.kiosk;
 
 					function tryRestoreSlots() {
-						var drinkIdList = scope.parameters.drinkIdList;
+						var drinkIdList = parametersModel.parameters.drinkIdList;
 						if (drinkIdList.length == 0) { return false; }
 
 						for (var i = 0; i < drinkIdList.length; i++) {
@@ -832,7 +840,7 @@
 						themesModel.setThemeRandom();
 					}
 					
-					themesModel.setThemeByTinyName(scope.parameters.themeTinyName);
+					themesModel.setThemeByTinyName(parametersModel.themeTinyName);
 
 					if (!tryRestoreSlots()) {
 						scope.addSlot();
