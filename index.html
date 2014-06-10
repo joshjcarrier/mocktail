@@ -925,10 +925,8 @@
 	</head>
 	<body ng-controller="SlotsCtrl" ng-style="themes.active.style">
 		<header ng-hide="{{kioskmode}}">
-			<div class="pull-right" style="padding-top:10px; padding-right:20px">
-				<span ng-repeat="theme in themes.themesList">
-				<a ng-click="themes.setThemeByTinyName(theme.tinyName)" title="{{theme.name}} theme" ng-style="{'font-weight': themes.active == theme ? 'bold' : ''}">{{theme.tinyName}}</a><span ng-show="!$last">&nbsp;|&nbsp;</span>
-				</span>
+			<div class="pull-right btn-group" style="padding-top:10px; padding-right:20px">
+				<a class="btn btn-default btn-xs" ng-click="themes.setThemeByTinyName(theme.tinyName)" title="{{theme.name}} theme" ng-class="themes.active==theme?'btn-primary':''" ng-repeat="theme in themes.themesList">{{theme.tinyName}}</a>
 			</div>
 		</header>
 
@@ -958,9 +956,9 @@
 				<br />
 			</center>
 
-			<div class="row">
+			<div class="row" style="background: #ffffff">
 				<div class="col-xs-12 col-sm-6 col-lg-4 drink-listing" ng-repeat="drink in mocktail.drinksList">
-					<div class="row" style="border-top: 1px solid #ddd; background: #ffffff">
+					<div class="row" style="border-top: 1px solid #ddd;">
 						<table style="width: 100%">
 							<tr>
 								<td align="center" class="img-slotstage" style="padding: 10px">
