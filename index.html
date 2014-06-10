@@ -777,6 +777,34 @@
 
 							return "Oh my gawd " + name + "...";
 						}
+					},
+					{
+						"name": "Nyan Cat",
+						"tinyName": "NC",
+						"headerImgSrc": "nyancat.gif",
+						"addDrinkText": "more-nyanyanya （⊱•ω•⊰）",
+						"removeDrinkText": "less-nyanyanya o(≧o≦)o",
+						"resetDrinkText": "mix-にゃにゃにゃにゃ",
+						"shareDrinkText": "share-nyanyanyanya",
+						"style": {
+							'background-image': 'url(\'assets/images/nyancat_bg.jpg\')',
+							'background-repeat': 'repeat',
+							'color': '#eeeeee',
+							'font-family': 'Comic Sans, Comic Sans MS, cursive'
+						},
+						"tasteFormat": function(name, value) {
+							if (value <= 1.3) {
+								return name + "-nyanya";
+							}
+							else if (value <= 2.3) {
+								return "nya-" + name;
+							}
+							else if (value <= 3.3) {
+								return "nyanya-" + name;
+							}
+
+							return "nyanyanyanya-" + name;
+						}
 					}
 				];
 
@@ -877,12 +905,12 @@
 						if (tryRestoreSlots()) {
 							return;
 						}
-						
+
 						var randomDrinks = 3;
 						if (scope.kioskmode) {
 							randomDrinks = 2 + Math.round(Math.random() * 4); //somewhere between 2 and 6
 						}
-						
+
 						for (var i=0; i<randomDrinks; i++) {
 							scope.addSlot();
 						}
@@ -939,7 +967,7 @@
 									<img ng-src="assets/images/{{drink.img_url}}" alt="{{drink.name}}" class="img-slot">
 								</td>
 								<td valign="top">
-									<table style="width: 100%">
+									<table style="width: 100%; color: #000000">
 										<tr>
 											<td>
 												<h3><b>{{drink.name}}</b> {{drink.flavor}}</h3>
