@@ -874,9 +874,16 @@
 
 					// timeout allows load animations
 					$timeout(function() {
-						if (!tryRestoreSlots()) {
-							scope.addSlot();
-							scope.addSlot();
+						if (tryRestoreSlots()) {
+							return;
+						}
+						
+						var randomDrinks = 3;
+						if (scope.kioskmode) {
+							randomDrinks = 2 + Math.round(Math.random() * 4); //somewhere between 2 and 6
+						}
+						
+						for (var i=0; i<randomDrinks; i++) {
 							scope.addSlot();
 						}
 					});
