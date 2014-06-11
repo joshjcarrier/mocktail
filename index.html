@@ -28,15 +28,19 @@
 
 			@media (min-width: 768px) {
 				h1 {
-					font-size: 72px;
+					font-size: 64px;
 				}
 
 				h2 {
-					font-size: 48px;
+					font-size: 36px;
 				}
 
 				h3 {
-					font-size: 36px;
+					font-size: 28px;
+				}
+				
+				h4 {
+					font-size: 22px;
 				}
 
 				.img-slotstage {
@@ -45,6 +49,24 @@
 
 				img.img-slot {
 					height: 200px;
+				}
+			}
+			
+			@media (min-width: 992px) {
+				h1 {
+					font-size: 96px;
+				}
+
+				h2 {
+					font-size: 54px;
+				}
+
+				h3 {
+					font-size: 48px;
+				}
+				
+				h4 {
+					font-size: 36px;
 				}
 			}
 
@@ -933,7 +955,7 @@
 		<div style="padding-top:40px">
 			<center style="padding-left: 12px">
 				<img ng-src="assets/images/{{themes.active.headerImgSrc}}" height="220">
-				<h1>MOCKTAIL {{mocktail.drinksList.length}}000</h1>
+				<h1><b>MOCKTAIL {{mocktail.drinksList.length}}000</b></h1>
 
 				<div ng-hide="{{kioskmode}}">
 					<br />
@@ -947,12 +969,14 @@
 				</div>
 
 				<h2 style="text-transform:uppercase;word-wrap:break-word;">&quot;{{mocktail.name}}&quot;</h2>
-				<i>
-					<span ng-repeat="taste in mocktail.tastes | limitTo: 3">
-						{{themes.active.tasteFormat(taste.name, taste.value)}}<span ng-hide="$last">, </span>
-					</span>
-				</i>
-				<br />
+				
+				<h4>
+					<i>
+						<span ng-repeat="taste in mocktail.tastes | limitTo: 3">
+							{{themes.active.tasteFormat(taste.name, taste.value)}}<span ng-hide="$last">, </span>
+						</span>
+					</i>
+				</h4>
 				<br />
 			</center>
 
