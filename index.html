@@ -38,7 +38,7 @@
 				h3 {
 					font-size: 28px;
 				}
-				
+
 				h4 {
 					font-size: 22px;
 				}
@@ -51,7 +51,7 @@
 					height: 200px;
 				}
 			}
-			
+
 			@media (min-width: 992px) {
 				h1 {
 					font-size: 96px;
@@ -62,11 +62,11 @@
 				}
 
 				h3 {
-					font-size: 48px;
-				}
-				
-				h4 {
 					font-size: 36px;
+				}
+
+				h4 {
+					font-size: 32px;
 				}
 			}
 
@@ -782,7 +782,7 @@
 						"shareDrinkText": "What does this mean?!?...",
 						"style": {
 							'background-color': '#f1f1f1',
-							'background': 'linear-gradient(to left, rgba(255,0,0,0.1), rgba(255,165,0,0.1), rgba(255,255,0,0.1), rgba(0,255,0,0.1), rgba(0,0,255,0.1), rgba(238,130,238,0.1), rgba(0,0,0,0.1), rgba(0,0,0,0.1), rgba(255,0,0,0.1), rgba(255,165,0,0.1), rgba(255,255,0,0.1), rgba(0,255,0,0.1), rgba(0,0,255,0.1), rgba(238,130,238,0.1))',
+							'background': 'linear-gradient(to left, rgba(255,0,0,0.2), rgba(255,165,0,0.2), rgba(255,255,0,0.2), rgba(0,255,0,0.2), rgba(0,0,255,0.2), rgba(238,130,238,0.2), rgba(0,0,0,0.2), rgba(0,0,0,0.2), rgba(255,0,0,0.2), rgba(255,165,0,0.2), rgba(255,255,0,0.2), rgba(0,255,0,0.2), rgba(0,0,255,0.2), rgba(238,130,238,0.2))',
 							'background-opacity': 0.1,
 							'font-family': 'arial, sans-serif'
 						},
@@ -826,6 +826,25 @@
 							}
 
 							return "nyanyanyanya-" + name;
+						}
+					},
+					{
+						"name": "Windows 95",
+						"tinyName": "W95",
+						"addDrinkText": "Add Feature",
+						"removeDrinkText": "Remove Feature...",
+						"resetDrinkText": "Run...",
+						"shareDrinkText": "Outlook Express",
+						"style": {
+							'background-image': 'url(\'assets/images/win95.png\')',
+							'background-repeat': 'no-repeat',
+							'background-position': 'center top',
+							'background-size': 'contain',
+							'background-color': 'rgb(179, 217, 217)',
+							'font-family': 'Arial',
+						},
+						"tasteFormat": function(name, value) {
+							return name + ": " + Math.ceil(value * 10) / 10;
 						}
 					}
 				];
@@ -954,7 +973,9 @@
 
 		<div style="padding-top:40px">
 			<center style="padding-left: 12px">
-				<img ng-src="assets/images/{{themes.active.headerImgSrc}}" height="220">
+				<div style="height: 220px">
+					<img ng-src="assets/images/{{themes.active.headerImgSrc}}" height="220" ng-show="themes.active.headerImgSrc != null">
+				</div>
 				<h1><b>MOCKTAIL {{mocktail.drinksList.length}}000</b></h1>
 
 				<div ng-hide="{{kioskmode}}">
@@ -969,7 +990,7 @@
 				</div>
 
 				<h2 style="text-transform:uppercase;word-wrap:break-word;">&quot;{{mocktail.name}}&quot;</h2>
-				
+
 				<h4>
 					<i>
 						<span ng-repeat="taste in mocktail.tastes | limitTo: 3">
