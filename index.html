@@ -850,9 +850,31 @@
 							'background-size': 'contain',
 							'background-color': 'rgb(179, 217, 217)',
 							'font-family': 'Arial',
+							'text-transform': 'capitalize'
 						},
 						"tasteFormat": function(name, value) {
 							return name + ": " + Math.ceil(value * 10) / 10;
+						}
+					},
+					{
+						"name": "PAC MAN",
+						"tinyName": "PM",
+						"addDrinkText": "1UP",
+						"removeDrinkText": "-1 LIVES",
+						"resetDrinkText": "WAKA WAKA WAKA",
+						"shareDrinkText": "INSERT COIN (1)",
+						"style": {
+							'background-image': 'url(\'assets/images/pacman.gif\')',
+							'background-repeat': 'no-repeat',
+							'background-position': 'center top',
+							'background-size': 'cover',
+							'background-color': '#000000',
+							'color': 'rgb(224, 227, 2)',
+							'font-family': 'Courier, Times New Roman',
+							'text-transform': 'uppercase'
+						},
+						"tasteFormat": function(name, value) {
+							return name + " score " + Math.ceil(value * 10) / 10;
 						}
 					}
 				];
