@@ -878,6 +878,36 @@
 						"tasteFormat": function(name, value) {
 							return name + " score " + Math.ceil(value * 20) / 20;
 						}
+					},
+					{
+						"name": "Taco Town",
+						"tinyName": "TT",
+						"headerImgSrc": "tacopizza.gif",
+						"addDrinkText": "add guacamole",
+						"removeDrinkText": "no cheese",
+						"resetDrinkText": "make a combo",
+						"shareDrinkText": "order to go",
+						"style": {
+							'background': 'linear-gradient(to left, rgba(255,0,0,0.4), rgba(255,255,255,1), rgba(0,255,0,0.4)',
+							'background-opacity': 0.1,
+							'color': 'rgb(224, 227, 2)',
+							'font-family': 'Comic Sans, Comic Sans MS, cursive',
+							'text-transform': 'uppercase',
+							'text-shadow': '-1px -1px 0 #f00,1px -1px 0 #f00,-1px 1px 0 #f00,1px 1px 0 #f00'
+						},
+						"tasteFormat": function(name, value) {
+							if (value <= 1.3) {
+								return "Small " + name;
+							}
+							else if (value <= 2.3) {
+								return "Medium " + name;
+							}
+							else if (value <= 3.3) {
+								return "Large " + name;
+							}
+
+							return "Extra large " + name;
+						}
 					}
 				];
 
@@ -1076,7 +1106,7 @@
 		</div>
 
 		<footer style="width:100%;">
-			<div class="pull-left" style="width: 100%; padding-left: 10px; color: #999999;text-transform:none">
+			<div class="pull-left" style="width: 100%; padding-left: 10px; color: #999999;text-transform:none;text-shadow:none">
 				&copy; 2014 <a href="http://joshjcarrier.com">Josh Carrier</a>. Fork on <a href="https://github.com/joshjcarrier/mocktail">GitHub</a>.
 				<small>Lil Jon and product images copyright their respective owners. Made possible with <a href="http://angularjs.org/">AngularJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a> &middot; <a href="license-ext.txt">Open source licenses</a>.</small>
 			</div>
