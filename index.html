@@ -850,7 +850,8 @@
 							'background-size': 'contain',
 							'background-color': 'rgb(179, 217, 217)',
 							'font-family': 'Arial',
-							'text-transform': 'capitalize'
+							'text-transform': 'capitalize',
+							'text-shadow': '-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff'
 						},
 						"tasteFormat": function(name, value) {
 							return name + ": " + Math.ceil(value * 10) / 10;
@@ -871,10 +872,11 @@
 							'background-color': '#000000',
 							'color': 'rgb(224, 227, 2)',
 							'font-family': 'Courier, Times New Roman',
-							'text-transform': 'uppercase'
+							'text-transform': 'uppercase',
+							'text-shadow': '-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000'
 						},
 						"tasteFormat": function(name, value) {
-							return name + " score " + Math.ceil(value * 10) / 10;
+							return name + " score " + Math.ceil(value * 20) / 20;
 						}
 					}
 				];
@@ -888,7 +890,7 @@
 							this.active = this.themesList[i];
 
 							var d = new Date();
-						    d.setTime(d.getTime() + (365*24*60*60*1000));
+						    d.setTime(d.getTime() + (365*24*60*60*2000));
 						    var expires = "expires="+d.toGMTString();
 							document.cookie = this.active.tinyName + ";" + expires;
 							return;
@@ -996,7 +998,7 @@
 	</head>
 	<body ng-controller="SlotsCtrl" ng-style="themes.active.style">
 		<header ng-hide="{{kioskmode}}">
-			<div class="pull-right btn-group" style="padding-top:10px; padding-right:20px">
+			<div class="pull-right btn-group" style="padding-top:10px; padding-right:20px;text-shadow:none">
 				<a class="btn btn-default btn-xs" ng-click="themes.setThemeByTinyName(theme.tinyName)" title="{{theme.name}} theme" ng-class="themes.active==theme?'btn-primary':''" ng-repeat="theme in themes.themesList">{{theme.tinyName}}</a>
 			</div>
 		</header>
@@ -1010,8 +1012,8 @@
 
 				<div ng-hide="{{kioskmode}}">
 					<br />
-					<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px"><span ng-bind-html="themes.active.addDrinkText | unsafe"></span></button>
-					<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px"><span ng-bind-html="themes.active.removeDrinkText | unsafe"></span></button>
+					<button type="button" class="btn btn-default btn-success btn-lg" ng-click="addSlot()" style="margin-bottom: 4px;text-shadow:none"><span ng-bind-html="themes.active.addDrinkText | unsafe"></span></button>
+					<button type="button" class="btn btn-default btn-danger btn-lg" ng-click="removeSlot()" style="margin-bottom: 4px;text-shadow:none"><span ng-bind-html="themes.active.removeDrinkText | unsafe"></span></button>
 					<br />
 					<br />
 					<button type="button" class="btn btn-default btn-primary btn-lg" ng-click="resetSlots()"><span ng-bind-html="themes.active.resetDrinkText | unsafe"></span></button>
@@ -1031,7 +1033,7 @@
 				<br />
 			</center>
 
-			<div class="row" style="background: #ffffff">
+			<div class="row" style="background: #ffffff;text-shadow:none">
 				<div class="col-xs-12 col-sm-6 col-lg-4 drink-listing" ng-repeat="drink in mocktail.drinksList">
 					<div class="row" style="border-top: 1px solid #ddd;">
 						<table style="width: 100%">
@@ -1059,7 +1061,7 @@
 				</div>
 			</div>
 
-			<center style="padding-left: 12px">
+			<center style="padding-left: 12px;text-shadow:none">
 				<div ng-hide="{{kioskmode}}">
 					<br />
 					<a ng-href="{{mocktail.share}}" class="btn btn-default btn-lg"><span ng-bind-html="themes.active.shareDrinkText | unsafe"></span></a>
@@ -1074,7 +1076,7 @@
 		</div>
 
 		<footer style="width:100%;">
-			<div class="pull-left" style="width: 100%; padding-left: 10px; color: #999999">
+			<div class="pull-left" style="width: 100%; padding-left: 10px; color: #999999;text-transform:none">
 				&copy; 2014 <a href="http://joshjcarrier.com">Josh Carrier</a>. Fork on <a href="https://github.com/joshjcarrier/mocktail">GitHub</a>.
 				<small>Lil Jon and product images copyright their respective owners. Made possible with <a href="http://angularjs.org/">AngularJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a> &middot; <a href="license-ext.txt">Open source licenses</a>.</small>
 			</div>
