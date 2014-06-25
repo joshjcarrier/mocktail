@@ -679,7 +679,7 @@
 						tastes.push({ 'name': tasteName, 'value': totalTastes[tasteName] / this.drinksList.length});
 					}
 
-					tastes.sort(function(a,b) { return a.value < b.value } );
+					tastes.sort(function(a,b) { return b.value - a.value; } );
 
 					window.location.hash = "f=" + formula;
 
@@ -881,33 +881,21 @@
 						}
 					},
 					{
-						"name": "Taco Town",
-						"tinyName": "TT",
-						"headerImgSrc": "tacopizza.gif",
-						"addDrinkText": "add guacamole",
-						"removeDrinkText": "no cheese",
-						"resetDrinkText": "make a combo",
-						"shareDrinkText": "order to go",
+						"name": "World Cup",
+						"tinyName": "WC",
+						"headerImgSrc": "mherrera.gif",
+						"addDrinkText": "90:00:00 +6'",
+						"removeDrinkText": "tarjeta roja",
+						"resetDrinkText": "partidos en vivo",
+						"shareDrinkText": "#BECAUSE FUTBOL",
 						"style": {
-							'background': 'linear-gradient(to left, rgba(255,0,0,0.4), rgba(255,255,255,1), rgba(0,255,0,0.4)',
-							'background-opacity': 0.1,
-							'color': 'rgb(224, 227, 2)',
+							'background-image': 'url(\'assets/images/fifa.jpg\')',
+							'color': '#4DA525',
 							'font-family': 'Comic Sans, Comic Sans MS, cursive',
-							'text-transform': 'uppercase',
-							'text-shadow': '-1px -1px 0 #f00,1px -1px 0 #f00,-1px 1px 0 #f00,1px 1px 0 #f00'
+							'text-shadow': '-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff'
 						},
 						"tasteFormat": function(name, value) {
-							if (value <= 1.3) {
-								return "Small " + name;
-							}
-							else if (value <= 2.3) {
-								return "Medium " + name;
-							}
-							else if (value <= 3.3) {
-								return "Large " + name;
-							}
-
-							return "Extra large " + name;
+							return name + ": " + Math.min(Math.ceil(value), 10) + " pts";
 						}
 					}
 				];
